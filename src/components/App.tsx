@@ -44,17 +44,23 @@ export default class App extends React.Component<{}, State> {
   }
 
   get = (url: string, allowedKeys: string[], stateProp: string) => {
+    const prop: string = stateProp;
+    const loaded: string = `${stateProp}Loaded`;
+    this.setState({
+      [prop]: undefined,
+      [loaded]: false
+    });
     fetch(url)
       .then(res => res.json())
       .then(res => {
-        const prop: string = stateProp;
         this.setState({
-          [prop]: filterProperties(res, allowedKeys, false)
+          [prop]: filterProperties(res, allowedKeys, false),
+          [loaded]: true
         });
       }); 
   }
-  
-  home = () => ( <Home content={this.state.pages.filter(page => page.slug === 'home')}/> )
+
+  home = () => ( <Home content={this.state.pages}/> )
   partners = () => ( <Partners partners={this.state.partners} /> )
   agenda = () => (<Agenda events={this.state.events} tags={this.state.tags} /> )
 
@@ -81,16 +87,19 @@ export default class App extends React.Component<{}, State> {
 
     return (
       <div className="app">
+        
         <Router>
           <Header switch={this.switchLang} lang={lang} />
-          {this.routes.map((route, i) => (
-            <Route
-              key={i}
-              path={route.path}
-              exact={route.exact}
-              component={route.comp}
-            />
-          ))}
+          <Switch>
+            {this.routes.map((route, i) => (
+              <Route
+                key={i}
+                path={route.path}
+                exact={route.exact}
+                component={route.comp}
+              />
+            ))}
+          </Switch>
         </Router>
       </div>
     );
