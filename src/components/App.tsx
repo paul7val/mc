@@ -24,15 +24,6 @@ export default class App extends React.Component<{}, State> {
  
   componentDidMount() {
     this.getAll();
-   
-  }
-
-  getAll() {
-    const { lang } = this.state;
-    this.get(`http://paulmitt.nunki.uberspace.de/wordpress/wp-json/wp/v2/partners?lang=${lang}`, ['logo', 'content', 'tags', 'acf', 'id', 'title'], 'partners');
-    this.get(`http://paulmitt.nunki.uberspace.de/wordpress/wp-json/wp/v2/pages?lang=${lang}`, ['content', 'tags', 'acf', 'id', 'slug'], 'pages');
-    this.get(`http://paulmitt.nunki.uberspace.de/wordpress/wp-json/wp/v2/tags?lang=${lang}`, ['id', 'name'], 'tags');
-    this.get(`http://paulmitt.nunki.uberspace.de/wordpress/wp-json/wp/v2/events?lang=${lang}`, ['tags', 'acf', 'id', 'title'], 'events');
   }
 
   switchLang = () => {
@@ -41,6 +32,14 @@ export default class App extends React.Component<{}, State> {
       lang: lang === 'de' ? 'en' : 'de'
     })
     this.getAll();
+  }
+
+  getAll() {
+    const { lang } = this.state;
+    this.get(`http://paulmitt.nunki.uberspace.de/wordpress/wp-json/wp/v2/partners?lang=${lang}`, ['logo', 'content', 'tags', 'acf', 'id', 'title'], 'partners');
+    this.get(`http://paulmitt.nunki.uberspace.de/wordpress/wp-json/wp/v2/pages?lang=${lang}`, ['content', 'tags', 'acf', 'id', 'slug'], 'pages');
+    this.get(`http://paulmitt.nunki.uberspace.de/wordpress/wp-json/wp/v2/tags?lang=${lang}`, ['id', 'name'], 'tags');
+    this.get(`http://paulmitt.nunki.uberspace.de/wordpress/wp-json/wp/v2/events?lang=${lang}`, ['tags', 'acf', 'id', 'title'], 'events');
   }
 
   get = (url: string, allowedKeys: string[], stateProp: string) => {

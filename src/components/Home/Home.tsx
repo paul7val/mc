@@ -23,25 +23,6 @@ export default class Home extends React.Component<Props, {}> {
         className="home"
         style={this.props.style}
       >
-        {/* <Icons /> */}
-        <Transition
-          from={{ opacity: 0, transform: 'translateX(50px)' }}
-          enter={{ opacity: 1, transform: 'translateX(0)' }}
-          leave={{ opacity: 0, transform: 'translateX(50px)' }}>
-          {(styles => (
-            <h1 style={styles}>HOME</h1>
-          ))}
-        </Transition>
-        <Transition
-          from={{ opacity: 0, transform: 'translateX(100px)' }}
-          enter={{ opacity: 1, transform: 'translateX(0)' }}
-          leave={{ opacity: 0, transform: 'translateX(100px)' }}
-          delay={50}
-        >
-          {(styles => (
-            <p style={styles}>content, content, content</p>
-          ))}
-        </Transition>
         {home &&
           <div
             className="dom"

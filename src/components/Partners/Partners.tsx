@@ -61,7 +61,7 @@ export default class Partners extends React.Component<AppProps, State> {
                           from={{ opacity: 0, height: 0 }}
                           enter={{ opacity: 1, height: 'auto' }}
                           leave={{ opacity: 0, height: 0 }}
-                          config={{ tension: 200, friction: 20 }}>
+                          config={{ tension: 230, friction: 30 }}>
                           {open && (styles =>
                             <div
                               className="more"
